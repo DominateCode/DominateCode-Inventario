@@ -1,0 +1,1 @@
+<?php common::console_log("plugin test");?>

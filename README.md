@@ -1,2 +1,2 @@
-# DominateCode-Inventario
-Sistema de control de ventas e inventario 
+# DCFrameworkBase
+Framework base php

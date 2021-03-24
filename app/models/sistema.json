@@ -1,0 +1,33 @@
+    {
+        "sistema":[
+            {
+                "NombreApp":"DominateCode Apps",
+                "Dominio":"http://andabopa.com",
+                "Tema_name":"Default",
+                "LogoApp":"LogoApp.jpg"
+            }
+        ],
+        "Apps":[
+            {
+                "Nombre":"Gestion de Contactos",
+                "descripcion":"CRM gestion o administracion de clientes, información de contacto, email, etc.",
+                "ruta":""
+            },{
+                "Nombre":"FreeHosting",
+                "descripcion":"Cree y gestione su cuenta de hosting gratuita de Myownfreehost",
+                "ruta":""
+            },{
+                "Nombre":"BUILDAPPS",
+                "descripcion":"Cree aplicaciones web con nuestro framework en php",
+                "ruta":""
+            },{
+                "Nombre":"Forum",
+                "descripcion":"Interactue con nuestra comunidad de desarrolladores en nuesrto forum",
+                "ruta":""
+            },{
+                "Nombre":"Users",
+                "descripcion":"Gestione su perfil en nuestro servicio de identidad DominateCode Users",
+                "ruta":""
+            }
+        ]
+    }
