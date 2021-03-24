@@ -1,0 +1,19 @@
+RewriteEngine On
+
+#desactiva el listado de directorios
+Options -Indexes 
+
+<FilesMatch "\.(htaccess|htpasswd|ini|phps|log|bak|txt|json)$">
+ Order Allow,Deny
+ Deny from all
+</FilesMatch>
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-l
+
+RewriteRule ^(.+)$ index.php?url=$1 [QSA,L] 
+
+ #para desactivar temporalmente el acceso a la aplicacion, use Allow from xxx.xxx.xxx.xxx para dar acceso a una determinada ip
+ # o use Deny from xxx.xxx.xxx.xxx para bloquear el acceso a una ip espesifica
+ #Deny from All
