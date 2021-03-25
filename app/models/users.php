@@ -1,13 +1,13 @@
 <?php
 namespace app\models;
 
-use \Model ;
+use \Model;
 
 class users extends Model{
 	//debemos definir los campos que estan en al base de datos pero antes de eso la tabla.
 
-	protected $table = "username";
-    protected $PrimaryKey = "uid";
+	protected $table = "users";
+    protected $PrimaryKey = "username";
     public $username;
     public $password;
     public $email;

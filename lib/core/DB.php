@@ -10,9 +10,9 @@ class DB {
 		$result = $statement->fetchAll();
 		return $result;
 	}
-	private static function Conexion(){
+	public static function Conexion(){
 		try {
-			return $connection = new PDO("mysql:host=sql200.dcfreehost.icu;dbname=dcfre_26845549_pruebas","dcfre_26845549","p62431996") ;
+			return $connection = new PDO("mysql:host=localhost;dbname=pruebas","root","") ;
         } catch (PDOException $e) {
             exit("Error: " . $e->getMessage());
         }

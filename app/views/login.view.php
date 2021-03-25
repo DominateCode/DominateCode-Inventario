@@ -8,21 +8,23 @@ $(document).ready(function(){
         if($.trim(username).length>0 && $.trim(password).length>0){
             $.ajax({
                 type: "POST",
-                url: "ajax?form=login",
+                url: "login?form=login",
                 data: {
                     'username':username,
                     'password':password
                 },
                 cache: false,
                 beforeSend: function(){ $("#login").val('Conectando...');},
-                success: function(data){
-                    if(data){
+                success: function(response){
+                    console.log(response);
+                    if(response == 'true'){
                         //$("body").load("home").hide().fadeIn(1500).delay(6000);
                         //or
                         window.location.href = "home";
                     }else{
                         //Shake animation effect.
-                        $("#error").html("<div class='alert alert-danger' role='alert'><span style='color:#cc0000'>Error:</span> Invalid username and password."+data+" </div> ");
+                        $("#login").val('Ingresar');
+                        $("#error").html("<div class='alert alert-danger' role='alert'><span style='color:#cc0000'>Error: </span> "+response+" </div> ");
                     }
                 }
             });
@@ -36,28 +38,32 @@ $(document).ready(function(){
         var email = document.getElementById("registrarform").elements["email"].value;
         var confirm_password  = document.getElementById("registrarform").elements["confirm_password"].value;
         var password = document.getElementById("registrarform").elements["password"].value;
-        var dataString = 'username='+username+'&password='+password+'&email='+email+'&confirm_password='+confirm_password+'&form=register';
         if(password !== confirm_password){
-            $("#errorr").html("<div class='alert alert-danger' role='alert'><span style='color:#cc0000'>Error:</span> las contraseñas no coinciden</div> ");
+            $("#errorr").html("<div class='alert alert-danger' role='alert'><span style='color:#cc0000'>Error: </span> las contraseñas no coinciden</div> ");
             return false;
         }
         if($.trim(username).length>0 && $.trim(password).length>0 && $.trim(email).length>0 && $.trim(confirm_password).length>0){
             $.ajax({
-                type: "GET",
-                url: "ajax?form=register",
-                data: dataString,
+                type: "POST",
+                url: "login?form=register",
+                data: {
+                    'username':username,
+                    'password':password,
+                    'email':email,
+                    'confirm_password':confirm_password
+                },
                 cache: false,
                 beforeSend: function(){ $("#register").val('Conectando...');},
-                success: function(data){
-                    if(data){
+                success: function(response){
+                    console.log(response);
+                    if(response == 'true'){
                         //$("body").load("home").hide().fadeIn(1500).delay(6000);
                         //or
-                        window.location.href = "home";
+                        $("#errorr").html("<div class='alert alert-success' role='alert'>Usuario registrado correctamente!</div> ");
                     }else{
                         //Shake animation effect.
-                        $('#box2').shake();
-                        $("#register").val('Registrar');
-                        $("#errorr").html("<div class='alert alert-danger' role='alert'><span style='color:#cc0000'>Error:</span> Invalid username and password.</div> ");
+                        //$('#box2').shake();
+                        $("#errorr").html("<div class='alert alert-danger' role='alert'><span style='color:#cc0000'>ERROR: </span>"+response+"</div> ");
                     }
                 }
             });

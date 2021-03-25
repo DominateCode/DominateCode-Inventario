@@ -1,7 +1,10 @@
 <?php  Themes::getThemeHeader(); ?>
-<main class="ms-sm-auto px-md-4">
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        
+<div class="containet-fluid">
+    <div class="row">
+        <?php Themes::getThemeSidebar();?>
+        <main id="main" class="col-md-9 ms-sm-auto col-lg-10 px-md-4 bg-white">
+            <h2>Bienvenido a <?php echo NombreApp;?></h2>
+        </main>
     </div>
-</main>
+</div>
 <?php Themes::getThemeFooter(); ?>

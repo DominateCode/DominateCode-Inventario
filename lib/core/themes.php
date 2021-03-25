@@ -37,6 +37,10 @@ class themes
     public static function getThemeFooter(){
         include THEMES.Themes::$theme."/"."footer.php";
     }
+
+    public static function getThemeSidebar(){
+        include THEMES.Themes::$theme."/"."sidebar.php";
+    }
 }
 
 ?>

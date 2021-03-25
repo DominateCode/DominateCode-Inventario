@@ -1,4 +1,5 @@
 <?php
+use app\models\users;
 
 class Session{
 
@@ -7,9 +8,7 @@ class Session{
     }
 
     public function checklogin(){
-        common::console_log('check login');
         if(isset($_SESSION["username"])){
-            common::console_log("Redireccionando...");
             return true;
         }else{
             return false;
@@ -32,31 +31,26 @@ class Session{
     }
  
     public static function registrar_usuario($username,$email,$password,$confirm_password){
+        $fk = "email";
         $msj_report = "";        
         $password_hash = password_hash($password, PASSWORD_BCRYPT);
-        $query = users::Find_fk("email",$email);
+        $query = users::Find_fk($fk,$email);
 
         if($password != $confirm_password){
-            $msj_report = '<p class="bg-error">Las contraseñas no coinciden.</p>';
+            $msj_report = 'Las contraseñas no coinciden';
         }else{
             if (Count($query) > 0) {
-                $msj_report = '<p class="error">La direccion de correo electronico ya esta registrada, intenta con otra direccion.</p>';
-            }
-        
-            if (Count($query) == 0) {
-                $query = DB::conexion()->prepare("INSERT INTO usuarios(USERNAME,PASSWD,EMAIL) VALUES  (:username,:password_hash,:email)") or die(mysql_error());
+                $msj_report = 'La direccion de correo electronico ya esta registrada, intenta con otra direccion.';
+            }elseif (Count($query) == 0) {
+                $query = DB::conexion()->prepare("INSERT INTO pruebas.users (`username`, `password`, `email`, `friend_count`, `profile_pic`) VALUES (:username,:password_hash,:email,NULL,NULL)") or die(mysql_error());
                 $query->bindParam("username", $username, PDO::PARAM_STR);
                 $query->bindParam("password_hash", $password_hash, PDO::PARAM_STR);
                 $query->bindParam("email", $email, PDO::PARAM_STR);
                 $result = $query->execute();
-        
                 if ($result) {
-                    common::alert("Usuario registrado!");
-                    $msj_report = '<p class="success">te registrarte con exito!</p>';
-                    header("location: home");
+                    $msj_report = 'true';
                 } else {
-                    common::alert("Error al registrar!");
-                    $msj_report = '<p class="error">error al registrar!</p>';
+                    $msj_report = 'error al registrar!';
                 }
             }
         }
@@ -67,18 +61,13 @@ class Session{
         $msj_report = "";
         $result = users::Find($username);
         if (!$result) {
-            $msj_report = 'false';
-            //$msj_report = '<p class="error">Username password combination is wrong!</p>';
+            $msj_report = 'El usuario y/o contraseña no existe';
         }else{
             if (password_verify($password, $result->password)) {
                 $_SESSION['username'] = $result->username;
                 $msj_report = 'true';
-                //common::alert("inicio de session correcto");
-                //$msj_report = '<p class="success">Inicio de session correcto!</p>';
             }else{
-                $msj_report = 'false';
-                //common::alert("Usuario o contraseña incorrecto!");
-               // $msj_report = '<p class="error">Usuario o contraseña incorrecto!</p>';
+               $msj_report = 'Usuario o contraseña incorrecto</p>';
             }
         }
         return $msj_report;

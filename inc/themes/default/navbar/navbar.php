@@ -14,13 +14,13 @@
         <?php
           if (isset($_SESSION['username'])) {
             echo "
-              <li class='nav-item text-nowrap dropdown'>
-                <a class='nav-link dropdown-toggle text-light' href='#' id='navbarDropdownMenuLink' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+              <div class='navbar-brand me-0 dropdown'>
+                <a class='  px-3 text-light dropdown-toggle' href='#' id='navbarDropdownMenuLink' role='button' data-bs-toggle='dropdown' aria-expanded='false'>
                 ".$_SESSION['username']."</a>
                 <div class='dropdown-menu' aria-labelledby='navbarDropdownMenuLink'>
                   <a class='dropdown-item' href='logout'>Logout</a>
                 </div>
-              </li>
+              </div>
             </ul>
             ";
           }else{

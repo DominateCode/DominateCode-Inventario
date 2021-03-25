@@ -5,7 +5,7 @@ class Model{
 	
 	public static function consulta($sql){
 		$model = new static();
-		return DC::Query($sql,[]);
+		return DB::Query($sql,[]);
 	}
 
 	public static function Select(){

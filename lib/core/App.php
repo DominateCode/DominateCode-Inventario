@@ -17,10 +17,9 @@ class App{
         
     }
     public function parseUrl(){
-        if(Session::checklogin() && isset($_GET["url"])){
+        if(isset($_GET["url"])){// Session::checklogin() && 
             return explode("/",filter_Var(rtrim($_GET["url"],"/"),FILTER_SANITIZE_URL));
-        }else{ return ['Login'];}
-        
+        }//else{ return ['Login'];}
     }
     public function op1(){
         $url = ($this->parseUrl() == null) ? ['Home'] : $this->parseUrl(); //si no se espesifica la pagina, entonces toma la pagina Home

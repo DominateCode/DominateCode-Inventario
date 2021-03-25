@@ -3,6 +3,7 @@
 class ip{
     
     public function __construct(){
+        
     }
 
     function getUserIpAddress() {
